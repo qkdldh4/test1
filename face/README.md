@@ -4,7 +4,9 @@
 
 ## GitHub Pages 배포
 
-이 웹앱은 Python 서버 없이 정적으로 실행됩니다. GitHub 저장소의 **Settings → Pages**에서 브랜치의 루트 폴더를 배포 대상으로 선택하면 됩니다. 저장소 루트가 이 `face` 폴더라면 Pages 주소를 열고, 상위 workspace가 저장소 루트라면 `.../py311/face/` 경로를 엽니다.
+이 웹앱은 Python 서버 없이 정적으로 실행됩니다. 이 `face` 폴더 안의 파일과 `.github` 폴더를 GitHub 저장소의 루트에 올리면, `main` 또는 `master` 브랜치에 push할 때 Actions가 `index.html`과 `app.js`만 GitHub Pages로 배포합니다. GitHub 저장소의 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 설정하세요. 첫 배포가 끝나면 `https://<사용자명>.github.io/<저장소명>/`에서 HTTPS로 접속할 수 있습니다.
+
+현재 VS Code workspace 루트는 여러 프로젝트를 포함하므로 그 전체를 웹 배포 저장소로 올릴 필요가 없습니다. GitHub 저장소는 `py311/face` 프로젝트 폴더를 루트로 삼아 구성하세요. workflow는 Python 파일을 사이트에 공개하지 않습니다.
 
 카메라 사용은 HTTPS 또는 localhost에서 브라우저 권한이 필요합니다. 권한을 허용할 수 없는 경우 사진 파일을 선택할 수 있습니다.
 

@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f4ef">
+  <title>MBTI 성향 체크 | 12문항</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f2f4ef;
+      --surface: #ffffff;
+      --ink: #172624;
+      --muted: #687772;
+      --line: #dce3dc;
+      --green: #2f6555;
+      --lime: #d9f26a;
+      --coral: #e77560;
+      --soft-green: #e8f0e9;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Aptos", "Malgun Gothic", "맑은 고딕", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image: radial-gradient(#cbd5cb 0.65px, transparent 0.65px);
+      background-size: 15px 15px;
+      font-family: var(--sans);
+    }
+
+    button { font: inherit; }
+
+    .shell {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 22px;
+      border-bottom: 1px solid #cbd5cc;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 750;
+      letter-spacing: .04em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 30px;
+      aspect-ratio: 1;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--ink);
+      background: var(--lime);
+      font-family: var(--serif);
+      font-size: 17px;
+    }
+
+    .top-note, .eyebrow, .axis-label, .question-count {
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .top-note { color: var(--muted); }
+
+    .intro {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 34px 0 27px;
+    }
+
+    .eyebrow { margin: 0 0 10px; color: var(--green); }
+
+    h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(34px, 5vw, 54px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .intro-copy {
+      max-width: 390px;
+      margin: 0 0 2px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(280px, .8fr);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: 0 18px 50px #28463a0b;
+    }
+
+    .test-panel { min-width: 0; padding: 30px 34px 32px; }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .question-count { margin: 0; color: var(--green); }
+
+    .progress-text { color: var(--muted); font-size: 12px; }
+
+    .progress-track {
+      height: 5px;
+      overflow: hidden;
+      background: #e9eee8;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background: var(--green);
+      transition: width 240ms ease;
+    }
+
+    .question-area { min-height: 294px; padding-top: 31px; }
+
+    .question-title {
+      max-width: 650px;
+      margin: 0 0 13px;
+      font-family: var(--serif);
+      font-size: clamp(23px, 3vw, 31px);
+      font-weight: 400;
+      line-height: 1.42;
+      letter-spacing: 0;
+    }
+
+    .question-hint { margin: 0; color: var(--muted); font-size: 12px; }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 9px;
+      margin-top: 25px;
+    }
+
+    .choice {
+      position: relative;
+      display: flex;
+      min-height: 74px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+    }
+
+    .choice:hover { transform: translateY(-2px); border-color: var(--green); }
+    .choice[aria-pressed="true"] { border-color: var(--green); background: var(--soft-green); }
+    .choice-number { color: var(--green); font-family: var(--serif); font-size: 20px; }
+    .choice-label { color: var(--muted); font-size: 11px; line-height: 1.35; }
+
+    .question-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .text-button, .next-button, .restart-button {
+      min-height: 42px;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .text-button { padding: 0 4px; color: var(--muted); background: transparent; }
+    .text-button:disabled { cursor: default; opacity: .4; }
+
+    .next-button, .restart-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 0 17px;
+      color: #fff;
+      background: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .next-button:disabled { cursor: not-allowed; opacity: .42; }
+    .next-button:not(:disabled):hover, .restart-button:hover { background: #214d40; }
+
+    .score-panel {
+      display: none;
+      padding: 30px 26px;
+      border-left: 1px solid var(--line);
+      background: #f8faf7;
+    }
+
+    .score-panel.visible { display: block; }
+
+    .score-heading { margin: 0 0 5px; font-size: 14px; font-weight: 750; }
+    .score-subtitle { margin: 0; color: var(--muted); font-size: 11px; }
+    .axis-list { display: grid; gap: 24px; margin-top: 30px; }
+    .axis-topline { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 9px; }
+    .axis-label { color: var(--muted); }
+    .axis-score { color: var(--ink); font-size: 11px; font-variant-numeric: tabular-nums; }
+
+    .axis-letters { display: flex; justify-content: space-between; margin-bottom: 7px; font-family: var(--serif); font-size: 17px; }
+    .axis-track { display: grid; height: 5px; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .axis-half { position: relative; overflow: hidden; background: #e1e8e1; }
+    .axis-half:last-child { transform: scaleX(-1); }
+    .axis-fill { width: 0; height: 100%; background: var(--green); transition: width 220ms ease; }
+    .axis-half:last-child .axis-fill { background: var(--coral); }
+
+    .score-note {
+      margin: 34px 0 0;
+      padding: 12px 13px;
+      border-left: 3px solid var(--lime);
+      color: var(--muted);
+      background: #eef2e8;
+      font-size: 11px;
+      line-height: 1.65;
+    }
+
+    .result-view { display: none; padding-top: 26px; }
+    .result-view.visible { display: block; animation: reveal 300ms ease both; }
+    .result-kicker { margin: 0 0 8px; color: var(--green); font-size: 11px; font-weight: 750; letter-spacing: .12em; }
+    .result-type { margin: 0; color: var(--green); font-family: var(--serif); font-size: clamp(54px, 8vw, 82px); font-weight: 400; line-height: 1; }
+    .result-summary { margin: 13px 0 24px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .result-axes { display: grid; gap: 11px; margin-bottom: 24px; }
+    .result-axis { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 11px; padding: 11px 12px; background: #f5f7f3; }
+    .result-letter { color: var(--green); font-family: var(--serif); font-size: 22px; }
+    .result-axis-name { font-size: 12px; font-weight: 700; }
+    .result-axis-detail { color: var(--muted); font-size: 10px; }
+    .result-explanations { display: grid; gap: 0; margin-top: 23px; border-top: 1px solid var(--line); }
+    .explanation { padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .explanation p { margin: 0; font-size: 11px; line-height: 1.65; }
+    .explanation .explanation-meta { margin-bottom: 4px; color: var(--green); font-size: 10px; font-weight: 700; }
+    .result-actions { display: flex; justify-content: flex-end; margin-top: 20px; }
+    .disclaimer { max-width: 790px; margin: 18px 0 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    @keyframes reveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 28px, 560px); padding-top: 16px; }
+      .intro { align-items: flex-start; flex-direction: column; gap: 13px; padding: 27px 0 21px; }
+      .intro-copy { max-width: 500px; }
+      .dashboard { grid-template-columns: 1fr; }
+      .test-panel { padding: 24px 20px 23px; }
+      .question-area { min-height: 0; padding-top: 25px; }
+      .choices { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 20px; }
+      .choice { min-height: 66px; }
+      .score-panel { padding: 22px 20px; border-top: 1px solid var(--line); border-left: 0; }
+      .axis-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; margin-top: 22px; }
+      .score-note { margin-top: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">m</span><span>SELF / CHECK</span></div>
+      <span class="top-note">12 questions · about 3 minutes</span>
+    </header>
+
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">PERSONALITY SNAPSHOT</p>
+        <h1 id="page-title">나를 읽는 12개의 질문</h1>
+      </div>
+      <p class="intro-copy">정답은 없어요. 특정한 하루보다 평소의 나를 떠올리고, 가장 가까운 응답을 골라보세요.</p>
+    </section>
+
+    <section class="dashboard" aria-label="간이 MBTI 성향 검사">
+      <div class="test-panel">
+        <div class="panel-head">
+          <p class="question-count" id="question-count">QUESTION 01 / 12</p>
+          <span class="progress-text" id="progress-text">응답 0 / 12</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="검사 진행률" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div id="question-view">
+          <div class="question-area" aria-live="polite">
+            <h2 class="question-title" id="question-title"></h2>
+            <p class="question-hint">평소의 나와 가까운 정도를 선택하세요.</p>
+            <div class="choices" id="choices" role="group" aria-label="응답 선택"></div>
+          </div>
+          <div class="question-actions">
+            <button class="text-button" id="previous-button" type="button">← 이전</button>
+            <button class="next-button" id="next-button" type="button" disabled><span>다음 문항</span><span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+
+        <section class="result-view" id="result-view" aria-live="polite" aria-labelledby="result-type">
+          <p class="result-kicker">YOUR PERSONALITY SNAPSHOT</p>
+          <h2 class="result-type" id="result-type"></h2>
+          <p class="result-summary" id="result-summary"></p>
+          <div class="result-axes" id="result-axes"></div>
+          <p class="eyebrow">QUESTION NOTES</p>
+          <div class="result-explanations" id="result-explanations"></div>
+          <div class="result-actions"><button class="restart-button" id="restart-button" type="button">다시 검사하기 <span aria-hidden="true">↻</span></button></div>
+        </section>
+      </div>
+
+      <aside class="score-panel" aria-labelledby="score-heading">
+        <h2 class="score-heading" id="score-heading">성향 밸런스</h2>
+        <p class="score-subtitle">답변에 따라 축별 점수가 쌓입니다.</p>
+        <div class="axis-list" id="axis-list"></div>
+        <p class="score-note">각 축은 3개 문항으로 구성돼요. 점수 차이가 작다면 두 성향이 비슷할 수 있습니다.</p>
+      </aside>
+    </section>
+
+    <p class="disclaimer">이 결과는 12문항으로 구성한 간이 자기점검 도구입니다. 공식 MBTI 검사나 심리 진단이 아니며, 상황과 컨디션에 따라 응답과 결과가 달라질 수 있습니다.</p>
+    <p class="visually-hidden" id="announcer" aria-live="polite"></p>
+  </main>
+
+  <script>
+    const questions = [
+      { axis: "EI", text: "처음 만난 사람들과 함께 있을 때 먼저 말을 걸거나 대화를 이어가는 편이다.", explanation: "낯선 모임에서 먼저 교류하는 편인지, 관찰하며 익숙해진 뒤 대화하는 편인지 살펴봅니다." },
+      { axis: "SN", text: "설명이나 계획을 들을 때 큰 그림보다 구체적인 사실과 실제 사례가 먼저 궁금하다.", explanation: "관찰 가능한 세부 정보와 경험을 먼저 보는 경향(S)인지, 전체적인 의미와 가능성을 먼저 보는 경향(N)인지 살펴봅니다." },
+      { axis: "TF", text: "의견이 다를 때 개인적인 호감보다 공정한 기준과 논리적 일관성을 우선해 판단하는 편이다.", explanation: "판단할 때 원칙과 논리를 중시하는 경향(T)인지, 사람과 상황에 미치는 영향을 중시하는 경향(F)인지 살펴봅니다." },
+      { axis: "JP", text: "일정이 정해지면 미리 계획을 세우고, 진행 상황과 완료 여부를 확인하는 편이다.", explanation: "계획과 구조를 미리 정해 두는 경향(J)인지, 진행하면서 유연하게 조정하는 경향(P)인지 살펴봅니다." },
+      { axis: "EI", text: "생각을 정리할 때 혼자 오래 생각하기보다 다른 사람과 이야기하며 정리하는 편이다.", explanation: "대화와 상호작용을 통해 생각을 정리하는 경향(E)인지, 혼자 숙고한 뒤 생각을 나누는 경향(I)인지 살펴봅니다." },
+      { axis: "SN", text: "새로운 일을 배울 때 추상적인 원리보다 구체적인 절차를 직접 해보는 것이 더 편하다.", explanation: "실제 사례와 단계별 경험을 통해 배우는 경향(S)인지, 먼저 개념과 원리를 이해하려는 경향(N)인지 살펴봅니다." },
+      { axis: "TF", text: "갈등 상황에서는 당사자들의 감정보다 원칙과 공정성을 먼저 따져보는 편이다.", explanation: "갈등을 다룰 때 일관된 기준을 우선하는 경향(T)인지, 관계와 사람들의 감정을 우선 고려하는 경향(F)인지 살펴봅니다." },
+      { axis: "JP", text: "마감 직전에 서두르기보다 미리 준비를 끝내고 여유를 두는 것이 마음 편하다.", explanation: "일을 일찍 정리하고 마무리하려는 경향(J)인지, 마감까지 선택지를 열어 두고 유연하게 진행하는 경향(P)인지 살펴봅니다." },
+      { axis: "EI", text: "모임에서는 소수와 오래 대화하기보다 여러 사람과 폭넓게 이야기하는 것이 편하다.", explanation: "여러 사람과 활발히 교류하는 경향(E)인지, 소수와 깊이 이야기하거나 혼자 쉬는 시간을 선호하는 경향(I)인지 살펴봅니다." },
+      { axis: "SN", text: "무언가를 판단할 때 지금 확인할 수 있는 정보와 과거의 경험을 주된 근거로 삼는 편이다.", explanation: "검증 가능한 사실과 경험을 중시하는 경향(S)인지, 정보 사이의 패턴이나 앞으로의 가능성도 함께 보는 경향(N)인지 살펴봅니다." },
+      { axis: "TF", text: "누군가에게 피드백을 줄 때 기분을 맞추기보다 정확하고 구체적인 개선점을 먼저 말하는 편이다.", explanation: "정확한 기준과 개선점을 직접 말하는 경향(T)인지, 상대가 받아들일 방식과 관계에 미치는 영향을 먼저 고려하는 경향(F)인지 살펴봅니다." },
+      { axis: "JP", text: "여행이나 주말 일정은 현장에서 정하기보다 큰 틀과 순서를 미리 정해 두는 편이다.", explanation: "일정과 순서를 계획하는 경향(J)인지, 현장에서 선택할 수 있도록 여지를 두는 경향(P)인지 살펴봅니다." }
+    ];
+
+    const axes = {
+      EI: { first: "E", second: "I", label: "에너지와 교류" },
+      SN: { first: "S", second: "N", label: "정보를 받아들이는 방식" },
+      TF: { first: "T", second: "F", label: "판단과 의사결정" },
+      JP: { first: "J", second: "P", label: "계획과 진행 방식" }
+    };
+
+    const meanings = {
+      E: "외향: 사람들과 교류하고 바깥 활동에 참여하며 에너지를 얻는 경향",
+      I: "내향: 혼자 또는 소수와 생각을 정리하는 시간에서 에너지를 얻는 경향",
+      S: "감각: 구체적인 사실, 현재의 경험, 실제적인 정보를 중시하는 경향",
+      N: "직관: 패턴, 의미, 새로운 가능성과 큰 그림을 중시하는 경향",
+      T: "사고: 논리, 원칙, 일관된 기준을 중심으로 판단하는 경향",
+      F: "감정: 사람들의 가치, 관계, 결정이 미치는 영향을 중심으로 판단하는 경향",
+      J: "판단: 계획과 구조를 세우고 일을 정리해 마무리하는 것을 선호하는 경향",
+      P: "인식: 선택지를 열어 두고 상황에 맞춰 유연하게 조정하는 것을 선호하는 경향"
+    };
+
+    const answerLabels = ["전혀 그렇지 않다", "별로 그렇지 않다", "대체로 그렇다", "매우 그렇다"];
+    const answers = Array(questions.length).fill(null);
+    let currentIndex = 0;
+
+    const questionTitle = document.querySelector("#question-title");
+    const choices = document.querySelector("#choices");
+    const nextButton = document.querySelector("#next-button");
+    const previousButton = document.querySelector("#previous-button");
+    const progressFill = document.querySelector("#progress-fill");
+    const progressTrack = document.querySelector(".progress-track");
+    const questionView = document.querySelector("#question-view");
+    const resultView = document.querySelector("#result-view");
+
+    function calculateScores() {
+      const scores = Object.fromEntries(Object.values(axes).flatMap(({ first, second }) => [[first, 0], [second, 0]]));
+      questions.forEach((question, index) => {
+        const answer = answers[index];
+        if (answer === null) return;
+        const { first, second } = axes[question.axis];
+        scores[first] += answer;
+        scores[second] += 5 - answer;
+      });
+      return scores;
+    }
+
+    function renderAxes() {
+      const scores = calculateScores();
+      document.querySelector("#axis-list").innerHTML = Object.entries(axes).map(([key, axis]) => {
+        const firstScore = scores[axis.first];
+        const secondScore = scores[axis.second];
+        return `<div class="axis-row" aria-label="${axis.first} ${firstScore}점, ${axis.second} ${secondScore}점">
+          <div class="axis-topline"><span class="axis-label">${axis.label}</span><span class="axis-score">${firstScore} : ${secondScore}</span></div>
+          <div class="axis-letters"><span>${axis.first}</span><span>${axis.second}</span></div>
+          <div class="axis-track" aria-hidden="true"><div class="axis-half"><div class="axis-fill" style="width:${firstScore / 12 * 100}%"></div></div><div class="axis-half"><div class="axis-fill" style="width:${secondScore / 12 * 100}%"></div></div></div>
+        </div>`;
+      }).join("");
+    }
+
+    function renderQuestion() {
+      const question = questions[currentIndex];
+      const answer = answers[currentIndex];
+      questionTitle.textContent = question.text;
+      document.querySelector("#question-count").textContent = `QUESTION ${String(currentIndex + 1).padStart(2, "0")} / ${questions.length}`;
+      document.querySelector("#progress-text").textContent = `응답 ${answers.filter((value) => value !== null).length} / ${questions.length}`;
+      progressFill.style.width = `${answers.filter((value) => value !== null).length / questions.length * 100}%`;
+      progressTrack.setAttribute("aria-valuenow", String(answers.filter((value) => value !== null).length));
+      choices.innerHTML = answerLabels.map((label, index) => `<button class="choice" type="button" aria-pressed="${answer === index + 1}" data-value="${index + 1}"><span class="choice-number">0${index + 1}</span><span class="choice-label">${label}</span></button>`).join("");
+      choices.querySelectorAll(".choice").forEach((button) => button.addEventListener("click", () => {
+        answers[currentIndex] = Number(button.dataset.value);
+        renderQuestion();
+        nextButton.focus();
+      }));
+      previousButton.disabled = currentIndex === 0;
+      nextButton.disabled = answer === null;
+      nextButton.querySelector("span").textContent = currentIndex === questions.length - 1 ? "결과 보기" : "다음 문항";
+    }
+
+    function showResult() {
+      const scores = calculateScores();
+      const result = Object.values(axes).map(({ first, second }) => scores[first] > scores[second] ? first : second).join("");
+      renderAxes();
+      document.querySelector(".score-panel").classList.add("visible");
+      document.querySelector("#result-type").textContent = result;
+      document.querySelector("#result-summary").textContent = [...result].map((letter) => meanings[letter]).join(". ") + ".";
+      document.querySelector("#result-axes").innerHTML = Object.entries(axes).map(([key, axis], index) => {
+        const selected = result[index];
+        const opposite = selected === axis.first ? axis.second : axis.first;
+        return `<div class="result-axis"><span class="result-letter">${selected}</span><div><div class="result-axis-name">${axis.label}</div><div class="result-axis-detail">${scores[selected]}점 · ${opposite} ${scores[opposite]}점</div></div><span aria-hidden="true">↗</span></div>`;
+      }).join("");
+      document.querySelector("#result-explanations").innerHTML = questions.map((question, index) => {
+        const answer = answers[index];
+        const leaning = answer >= 3 ? axes[question.axis].first : axes[question.axis].second;
+        return `<article class="explanation"><p class="explanation-meta">${String(index + 1).padStart(2, "0")} · ${answer}점 · ${leaning} 쪽</p><p>${question.explanation}</p></article>`;
+      }).join("");
+      questionView.hidden = true;
+      resultView.classList.add("visible");
+      document.querySelector("#progress-text").textContent = `완료 ${questions.length} / ${questions.length}`;
+      progressFill.style.width = "100%";
+      progressTrack.setAttribute("aria-valuenow", String(questions.length));
+      document.querySelector("#announcer").textContent = `검사 결과 ${result}입니다.`;
+    }
+
+    nextButton.addEventListener("click", () => {
+      if (answers[currentIndex] === null) return;
+      if (currentIndex === questions.length - 1) {
+        showResult();
+        return;
+      }
+      currentIndex += 1;
+      renderQuestion();
+    });
+
+    previousButton.addEventListener("click", () => {
+      if (currentIndex === 0) return;
+      currentIndex -= 1;
+      renderQuestion();
+    });
+
+    document.querySelector("#restart-button").addEventListener("click", () => {
+      answers.fill(null);
+      currentIndex = 0;
+      questionView.hidden = false;
+      resultView.classList.remove("visible");
+      document.querySelector(".score-panel").classList.remove("visible");
+      document.querySelector("#axis-list").innerHTML = "";
+      renderQuestion();
+      questionTitle.focus();
+    });
+
+    renderQuestion();
+  </script>
+</body>
+</html>

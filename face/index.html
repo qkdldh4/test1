@@ -167,7 +167,7 @@
 				<p class="eyebrow">A LITTLE MOMENT OF FUN</p>
 				<h1 id="page-title">얼굴의 세 구역을 살펴보기</h1>
 			</div>
-			<p class="intro-note">이마·눈썹선·코끝·턱끝의 기준점으로 상·중·하정 비율을 추정합니다. 전통 관상 해석을 소개하는 문화 정보이며, 성격이나 운명을 판정하지 않습니다.</p>
+			<p class="intro-note">브라우저에서 얼굴 기준점을 측정해 전통 관상 풀이를 보여드립니다. 사진은 분석을 위해 서버로 보내지 않습니다.</p>
 		</section>
 
 		<section class="workspace" aria-label="얼굴 비율 분석">
@@ -193,7 +193,7 @@
 					<button class="button button-light" id="retake-photo" type="button" hidden>다시 촬영</button>
 					<label class="button button-light file-picker" id="file-picker">사진 파일 선택<input id="photo-file" type="file" accept="image/jpeg,image/png,image/webp" aria-label="사진 파일 선택"></label>
 				</div>
-				<p class="camera-help">브라우저의 카메라 권한이 필요합니다. 카메라가 안 되면 사진 파일을 선택할 수 있어요.</p>
+				<p class="camera-help">카메라는 HTTPS 또는 localhost에서 권한을 허용해야 합니다. 카메라가 안 되면 사진 파일을 선택할 수 있어요.</p>
 			</div>
 
 			<aside class="result-column" aria-labelledby="result-heading">
@@ -218,7 +218,7 @@
 					</article>
 					<p class="error-message" id="error-message" role="alert"></p>
 				</div>
-				<p class="privacy-note"><strong>사진은 저장되지 않아요.</strong><br>촬영본은 이 컴퓨터의 로컬 서버에서만 처리하고 결과를 만든 뒤 폐기합니다.</p>
+				<p class="privacy-note"><strong>사진은 브라우저 안에서만 처리됩니다.</strong><br>사진은 서버로 전송되지 않으며, 분석 모델은 처음 사용할 때 CDN에서 내려받습니다.</p>
 			</aside>
 		</section>
 
@@ -226,221 +226,6 @@
 		<p class="visually-hidden" id="announcer" aria-live="polite"></p>
 	</main>
 
-	<script>
-		const video = document.querySelector("#camera-video");
-		const stage = document.querySelector("#camera-stage");
-		const preview = document.querySelector("#photo-preview");
-		const canvas = document.querySelector("#photo-canvas");
-		const startButton = document.querySelector("#start-camera");
-		const captureButton = document.querySelector("#capture-photo");
-		const analyzeButton = document.querySelector("#analyze-photo");
-		const retakeButton = document.querySelector("#retake-photo");
-		const filePicker = document.querySelector("#file-picker");
-		const fileInput = document.querySelector("#photo-file");
-		const status = document.querySelector("#camera-status");
-		const statusText = document.querySelector("#status-text");
-		const errorMessage = document.querySelector("#error-message");
-		const resultCard = document.querySelector("#result-card");
-		const emptyState = document.querySelector("#empty-state");
-		let cameraStream = null;
-		let photoBlob = null;
-		let photoUrl = null;
-
-		function setStatus(state, message) {
-			status.dataset.state = state;
-			statusText.textContent = message;
-		}
-
-		function showError(message) {
-			errorMessage.textContent = message;
-			errorMessage.classList.add("visible");
-		}
-
-		function clearError() {
-			errorMessage.textContent = "";
-			errorMessage.classList.remove("visible");
-		}
-
-		function stopCamera() {
-			if (cameraStream) {
-				cameraStream.getTracks().forEach((track) => track.stop());
-				cameraStream = null;
-			}
-			video.srcObject = null;
-			stage.classList.remove("is-live");
-		}
-
-		function clearPhoto() {
-			if (photoUrl) URL.revokeObjectURL(photoUrl);
-			photoUrl = null;
-			photoBlob = null;
-			preview.removeAttribute("src");
-			stage.classList.remove("has-photo");
-			analyzeButton.hidden = true;
-			retakeButton.hidden = true;
-			resultCard.classList.remove("visible");
-			document.querySelector("#analysis-method").textContent = "";
-			document.querySelector("#result-summary").textContent = "";
-			document.querySelector("#measurements").replaceChildren();
-			document.querySelector("#traditional-note").textContent = "";
-			document.querySelector("#result-disclaimer").textContent = "";
-			emptyState.hidden = false;
-			filePicker.hidden = false;
-			setStatus("off", "카메라 꺼짐");
-		}
-
-		async function startCamera() {
-			clearError();
-			if (!navigator.mediaDevices?.getUserMedia) {
-				showError("이 브라우저에서는 카메라를 열 수 없습니다. 사진 파일을 선택해 주세요.");
-				return;
-			}
-			try {
-				cameraStream = await navigator.mediaDevices.getUserMedia({
-					audio: false,
-					video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 960 } }
-				});
-				video.srcObject = cameraStream;
-				await video.play();
-				stage.classList.add("is-live");
-				startButton.hidden = true;
-				captureButton.hidden = false;
-				filePicker.hidden = true;
-				setStatus("live", "카메라 준비됨");
-			} catch (error) {
-				const message = error.name === "NotAllowedError"
-					? "카메라 권한이 차단되어 있어요. 브라우저 주소창에서 권한을 허용하거나 사진 파일을 선택해 주세요."
-					: "카메라를 열 수 없어요. 다른 앱에서 카메라를 사용 중인지 확인하거나 사진 파일을 선택해 주세요.";
-				showError(message);
-				setStatus("off", "카메라 꺼짐");
-			}
-		}
-
-		function setPhoto(blob) {
-			clearError();
-			stopCamera();
-			clearPhoto();
-			photoBlob = blob;
-			photoUrl = URL.createObjectURL(blob);
-			preview.src = photoUrl;
-			stage.classList.add("has-photo");
-			startButton.hidden = true;
-			captureButton.hidden = true;
-			analyzeButton.hidden = false;
-			retakeButton.hidden = false;
-			filePicker.hidden = true;
-			emptyState.hidden = true;
-			setStatus("ready", "사진 준비됨");
-		}
-
-		startButton.addEventListener("click", startCamera);
-
-		captureButton.addEventListener("click", () => {
-			if (!video.videoWidth || !video.videoHeight) {
-				showError("카메라 화면이 준비될 때까지 잠시 기다려 주세요.");
-				return;
-			}
-			const scale = Math.min(1, 1600 / Math.max(video.videoWidth, video.videoHeight));
-			canvas.width = Math.round(video.videoWidth * scale);
-			canvas.height = Math.round(video.videoHeight * scale);
-			const context = canvas.getContext("2d");
-			context.translate(canvas.width, 0);
-			context.scale(-1, 1);
-			context.drawImage(video, 0, 0, canvas.width, canvas.height);
-			canvas.toBlob((blob) => {
-				if (blob) setPhoto(blob);
-				else showError("사진을 만들지 못했어요. 다시 촬영해 주세요.");
-			}, "image/jpeg", 0.88);
-		});
-
-		retakeButton.addEventListener("click", () => {
-			clearPhoto();
-			startButton.hidden = false;
-			startCamera();
-		});
-
-		fileInput.addEventListener("change", () => {
-			const file = fileInput.files?.[0];
-			if (!file) return;
-			if (!file.type.startsWith("image/")) {
-				showError("JPG, PNG 또는 WEBP 이미지 파일을 선택해 주세요.");
-				fileInput.value = "";
-				return;
-			}
-			if (file.size > 8 * 1024 * 1024) {
-				showError("사진은 8MB 이하로 선택해 주세요.");
-				fileInput.value = "";
-				return;
-			}
-			setPhoto(file);
-			fileInput.value = "";
-		});
-
-		analyzeButton.addEventListener("click", async () => {
-			if (!photoBlob) return;
-			clearError();
-			analyzeButton.disabled = true;
-			analyzeButton.textContent = "분석 중...";
-			setStatus("ready", "로컬에서 처리 중");
-			try {
-				const response = await fetch("/analyze", {
-					method: "POST",
-					headers: { "Content-Type": "application/octet-stream" },
-					body: photoBlob
-				});
-				const result = await response.json();
-				if (!response.ok) throw new Error(result.error || "사진을 분석하지 못했어요.");
-				document.querySelector("#analysis-method").textContent = result.method;
-				document.querySelector("#result-summary").textContent = result.summary;
-				const measurementList = document.querySelector("#measurements");
-				measurementList.replaceChildren(...result.measurements.map((measurement) => {
-					const row = document.createElement("div");
-					row.className = "measurement";
-					const topline = document.createElement("div");
-					topline.className = "measurement-topline";
-					const name = document.createElement("span");
-					name.className = "measurement-name";
-					name.textContent = measurement.name;
-					const ratio = document.createElement("span");
-					ratio.className = "measurement-ratio";
-					ratio.textContent = `${measurement.ratio}%`;
-					topline.append(name, ratio);
-					const track = document.createElement("div");
-					track.className = "measurement-track";
-					track.setAttribute("role", "meter");
-					track.setAttribute("aria-valuemin", "0");
-					track.setAttribute("aria-valuemax", "100");
-					track.setAttribute("aria-valuenow", String(measurement.ratio));
-					track.setAttribute("aria-label", `${measurement.name} 비율`);
-					const fill = document.createElement("div");
-					fill.className = "measurement-fill";
-					fill.style.width = `${measurement.ratio}%`;
-					track.append(fill);
-					const note = document.createElement("p");
-					note.className = "measurement-note";
-					note.textContent = `${measurement.region} · ${measurement.note}`;
-					row.append(topline, track, note);
-					return row;
-				}));
-				document.querySelector("#traditional-note").textContent = result.reading;
-				document.querySelector("#result-disclaimer").textContent = result.disclaimer;
-				emptyState.hidden = true;
-				resultCard.classList.add("visible");
-				document.querySelector("#announcer").textContent = `전통 삼정 풀이: ${result.summary}. ${result.reading}`;
-				setStatus("ready", "카드 완성");
-			} catch (error) {
-				showError(error.message || "서버에 연결할 수 없어요. Python 프로그램이 실행 중인지 확인해 주세요.");
-				setStatus("ready", "분석할 수 없음");
-			} finally {
-				analyzeButton.disabled = false;
-				analyzeButton.innerHTML = '관상 카드 보기 <span aria-hidden="true">↗</span>';
-			}
-		});
-
-		window.addEventListener("beforeunload", () => {
-			stopCamera();
-			if (photoUrl) URL.revokeObjectURL(photoUrl);
-		});
-	</script>
+	<script type="module" src="./app.js"></script>
 </body>
 </html>

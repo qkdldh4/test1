@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 원본 수집 산출물(재생성 가능). 정적 페이지용 가공 데이터는 web/data 에만 커밋합니다.
+test/tsa/assets/data/latest.json
+test/tsa/assets/data/cache/

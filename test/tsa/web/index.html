@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KOSPI 상대강도 레이더 · 시계열 분석</title>
+  <meta name="description" content="KODEX 200 대비 코스피 시총 상위 200종목의 상대강도·영향력·그룹 전환을 분석하는 시계열 대시보드">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1020'/%3E%3Cpath d='M14 46V18h7v11l11-11h9L28 31l14 15h-9L21 33v13z' fill='%2338bdf8'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">K<span>200</span></div>
+        <div class="brand-text">
+          <h1>KOSPI 상대강도 레이더</h1>
+          <p>KODEX 200 대비 초과 등락률 정규화 · 시총 상위 <b id="stockCount">–</b>종목 일봉 분석</p>
+        </div>
+      </div>
+      <div class="topbar-meta">
+        <span id="modeBadge" class="badge badge-muted">연결 중</span>
+        <span id="sourceBadge" class="badge badge-muted">데이터 확인 중</span>
+        <span id="dataStamp" class="muted small"></span>
+        <button id="reloadBtn" class="icon-btn" type="button" title="데이터 새로고침" aria-label="데이터 새로고침">↻</button>
+      </div>
+    </header>
+
+    <section class="toolbar" aria-label="분석 조건">
+      <div class="field">
+        <label for="lookback">기간</label>
+        <select id="lookback" aria-label="분석 기간"></select>
+      </div>
+      <div class="field">
+        <label for="window">정규화 창</label>
+        <div class="input-unit">
+          <input id="window" type="number" min="5" max="120" step="1" value="20" inputmode="numeric">
+          <span>거래일</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="threshold">횡보 밴드</label>
+        <div class="input-unit">
+          <span>±</span>
+          <input id="threshold" type="number" min="0" max="3" step="0.1" value="0.5" inputmode="decimal">
+          <span>σ</span>
+        </div>
+      </div>
+      <div class="field field-date">
+        <label for="dateSlider">기준일</label>
+        <div class="date-row">
+          <button id="prevDate" class="icon-btn small" type="button" aria-label="이전 거래일">‹</button>
+          <input id="dateSlider" type="range" min="0" max="0" value="0" step="1" aria-label="기준일 선택">
+          <button id="nextDate" class="icon-btn small" type="button" aria-label="다음 거래일">›</button>
+          <span id="dateLabel" class="date-label">–</span>
+        </div>
+      </div>
+      <div class="toolbar-right">
+        <div class="segmented" id="groupFilter" role="group" aria-label="그룹 필터">
+          <button type="button" data-group="ALL" class="active">전체</button>
+          <button type="button" data-group="U"><i class="dot up"></i>상향</button>
+          <button type="button" data-group="F"><i class="dot flat"></i>횡보</button>
+          <button type="button" data-group="D"><i class="dot down"></i>하향</button>
+        </div>
+        <input id="search" class="search" type="search" placeholder="종목명·코드 검색" aria-label="종목 검색">
+        <button id="csvBtn" class="btn" type="button" title="현재 필터 결과를 CSV로 저장">CSV</button>
+      </div>
+    </section>
+
+    <div id="staticNotice" class="notice notice-info hidden">
+      <b>GitHub Pages 정적 모드</b> · 서버 없이 미리 계산된 결과를 표시합니다.
+      파라미터를 바꾸려면 로컬에서 <code>python -m tsa.server</code>로 실행하세요.
+    </div>
+    <div id="demoNotice" class="notice notice-demo hidden">
+      <b>데모(합성) 데이터</b> · 종목명·시총은 실제 KRX 스냅샷이지만 가격·거래량은 시연용 합성입니다.
+      실제 시세는 <code>python -m tsa.collect --fetch</code>로 수집하세요.
+    </div>
+
+    <section class="kpis" id="kpis" aria-label="핵심 지표">
+      <article class="kpi kpi-bench">
+        <div class="kpi-head"><span>KODEX 200</span><span class="kpi-date" id="kpiDate">–</span></div>
+        <div class="kpi-value" id="kpiBenchRet">–</div>
+        <div class="kpi-sub"><span id="kpiBenchClose">–</span><span id="kpiUniverseRet" class="muted"></span></div>
+        <div class="kpi-bar"><i id="kpiBenchBar"></i></div>
+      </article>
+      <article class="kpi kpi-up">
+        <div class="kpi-head"><span><i class="dot up"></i>상향</span><span class="kpi-share" id="kpiUpShare">–</span></div>
+        <div class="kpi-value" id="kpiUp">–</div>
+        <div class="kpi-sub">z ≥ +<span class="threshold-label">0.5</span>σ</div>
+        <div class="kpi-bar"><i id="kpiUpBar"></i></div>
+      </article>
+      <article class="kpi kpi-flat">
+        <div class="kpi-head"><span><i class="dot flat"></i>횡보</span><span class="kpi-share" id="kpiFlatShare">–</span></div>
+        <div class="kpi-value" id="kpiFlat">–</div>
+        <div class="kpi-sub">밴드 안쪽</div>
+        <div class="kpi-bar"><i id="kpiFlatBar"></i></div>
+      </article>
+      <article class="kpi kpi-down">
+        <div class="kpi-head"><span><i class="dot down"></i>하향</span><span class="kpi-share" id="kpiDownShare">–</span></div>
+        <div class="kpi-value" id="kpiDown">–</div>
+        <div class="kpi-sub">z ≤ −<span class="threshold-label">0.5</span>σ</div>
+        <div class="kpi-bar"><i id="kpiDownBar"></i></div>
+      </article>
+      <article class="kpi">
+        <div class="kpi-head"><span>시장 폭</span><span class="kpi-share">상승 비율</span></div>
+        <div class="kpi-value" id="kpiBreadth">–</div>
+        <div class="kpi-sub" id="kpiBreadthSub">–</div>
+        <div class="kpi-bar"><i id="kpiBreadthBar"></i></div>
+      </article>
+      <article class="kpi">
+        <div class="kpi-head"><span>거래대금 유입</span><span class="kpi-share" id="kpiInflowShare">–</span></div>
+        <div class="kpi-value" id="kpiInflow">–</div>
+        <div class="kpi-sub" id="kpiInflowSub">–</div>
+        <div class="kpi-bar"><i id="kpiInflowBar"></i></div>
+      </article>
+    </section>
+
+    <nav class="tabs" id="tabs" role="tablist" aria-label="분석 탭">
+      <button type="button" role="tab" aria-selected="true" class="active" data-tab="overview">개요</button>
+      <button type="button" role="tab" aria-selected="false" data-tab="influence">종목 영향력</button>
+      <button type="button" role="tab" aria-selected="false" data-tab="transitions">그룹 전환</button>
+      <button type="button" role="tab" aria-selected="false" data-tab="detail">종목 상세</button>
+      <span class="tab-spacer"></span>
+      <span class="tab-hint" id="tabHint">z = KODEX 200 대비 초과등락률 ÷ 롤링 표준편차</span>
+    </nav>
+
+    <main>
+      <section class="tab-panel" id="panel-overview" role="tabpanel">
+        <div class="card chart-card">
+          <header class="card-head">
+            <div>
+              <h2>상향 · 횡보 · 하향 추이</h2>
+              <p>매일 종목별 상대강도 z를 ±<span class="threshold-label">0.5</span>σ로 나눈 그룹 수와 KODEX 200 누적 흐름</p>
+            </div>
+            <div class="legend-inline">
+              <span><i class="dot up"></i>상향</span>
+              <span><i class="dot flat"></i>횡보</span>
+              <span><i class="dot down"></i>하향</span>
+              <span><i class="line-key bench"></i>KODEX 200</span>
+            </div>
+          </header>
+          <div id="chartGroups" class="chart" style="height:350px"></div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <header class="card-head">
+              <div>
+                <h2>오늘의 영향력 Top 12</h2>
+                <p>시총 비중 × 당일 등락률로 계산한 지수 기여도(%p)</p>
+              </div>
+              <span class="pill" id="contribDate">–</span>
+            </header>
+            <div id="chartContrib" class="chart" style="height:360px"></div>
+          </div>
+          <div class="card">
+            <header class="card-head">
+              <div>
+                <h2>주도주 릴레이</h2>
+                <p>일별 기여도 1~3위. 색은 해당일 그룹입니다.</p>
+              </div>
+              <button id="relayMore" class="btn ghost small" type="button">전체 보기</button>
+            </header>
+            <div id="leaderRelay" class="relay"></div>
+          </div>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <header class="card-head">
+              <div><h2>시장 내부 온도</h2><p>상승 종목 비율과 거래대금 유입 비중</p></div>
+            </header>
+            <div id="chartInternals" class="chart" style="height:260px"></div>
+          </div>
+          <div class="card">
+            <header class="card-head">
+              <div><h2>기준일 그룹 전환</h2><p>전일 대비 상향·횡보·하향이 바뀐 종목</p></div>
+              <span class="pill" id="moversCount">–</span>
+            </header>
+            <div id="overviewMovers" class="mini-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-influence" role="tabpanel" hidden>
+        <div class="grid two">
+          <div class="card">
+            <header class="card-head">
+              <div><h2>상대강도 × 거래량</h2><p>오른쪽 위일수록 강한 상향 압력 · 점 크기는 시가총액</p></div>
+            </header>
+            <div id="chartScatter" class="chart" style="height:380px"></div>
+          </div>
+          <div class="card">
+            <header class="card-head">
+              <div><h2>영향력 점수 구성</h2><p>기여도 50% · 거래대금 30% · 시총 20% (백분위)</p></div>
+            </header>
+            <div id="chartScore" class="chart" style="height:380px"></div>
+          </div>
+        </div>
+        <div class="card table-card">
+          <header class="card-head">
+            <div><h2>종목 영향력 랭킹</h2><p>열 제목을 누르면 정렬됩니다. 종목을 누르면 상세 분석으로 이동합니다.</p></div>
+            <span class="pill" id="tableCount">–</span>
+          </header>
+          <div class="table-wrap">
+            <table id="stockTable" class="data-table">
+              <thead>
+                <tr>
+                  <th class="num">#</th>
+                  <th data-sort="name">종목</th>
+                  <th data-sort="grp">그룹</th>
+                  <th data-sort="close" class="num">현재가</th>
+                  <th data-sort="ret" class="num">등락률</th>
+                  <th data-sort="rel" class="num">상대등락</th>
+                  <th data-sort="z" class="num">z</th>
+                  <th data-sort="vr" class="num">거래량비</th>
+                  <th data-sort="mcap" class="num">시총(조)</th>
+                  <th data-sort="weight" class="num">비중</th>
+                  <th data-sort="contrib" class="num">기여도(%p)</th>
+                  <th data-sort="score" class="num">영향력</th>
+                  <th data-sort="changes" class="num">전환</th>
+                  <th data-sort="streak" class="num">연속</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-transitions" role="tabpanel" hidden>
+        <div class="grid two">
+          <div class="card">
+            <header class="card-head">
+              <div><h2>그룹 전환 행렬</h2><p id="matrixSub">선택 기간 동안 전일 → 당일 그룹 이동 횟수</p></div>
+            </header>
+            <div id="chartMatrix" class="chart" style="height:340px"></div>
+          </div>
+          <div class="card">
+            <header class="card-head">
+              <div><h2>일별 상향 · 하향 전환</h2><p>상향 전환(횡보·하향→상향)과 하향 전환의 합계</p></div>
+            </header>
+            <div id="chartTransDaily" class="chart" style="height:340px"></div>
+          </div>
+        </div>
+        <div class="grid two">
+          <div class="card list-card">
+            <header class="card-head">
+              <div><h2>기준일 전환 종목</h2><p id="changeSub">–</p></div>
+              <span class="pill" id="changeCount">–</span>
+            </header>
+            <div id="changeList" class="change-list"></div>
+          </div>
+          <div class="card list-card">
+            <header class="card-head">
+              <div><h2>전환이 잦은 종목</h2><p>선택 기간 내 그룹 변경 횟수 상위</p></div>
+            </header>
+            <div id="changeLeaders" class="leader-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="panel-detail" role="tabpanel" hidden>
+        <div class="card detail-head">
+          <div class="detail-title">
+            <div class="detail-select-wrap">
+              <select id="detailSelect" aria-label="상세 종목 선택"></select>
+            </div>
+            <h2 id="detailName">종목을 선택하세요</h2>
+            <p id="detailMeta" class="muted">종목 영향력 표에서 행을 눌러도 이동합니다.</p>
+          </div>
+          <div class="detail-kpis" id="detailKpis"></div>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <header class="card-head">
+              <div><h2>주가 · 상대강도 z</h2><p>가격은 왼쪽 축, z는 오른쪽 축</p></div>
+            </header>
+            <div id="chartDetail" class="chart" style="height:340px"></div>
+          </div>
+          <div class="card">
+            <header class="card-head">
+              <div><h2>그룹 타임라인</h2><p>칸에 마우스를 올리면 날짜별 그룹을 확인할 수 있습니다.</p></div>
+            </header>
+            <div id="groupStrip" class="group-strip"></div>
+            <div id="detailStats" class="detail-stats"></div>
+          </div>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <header class="card-head">
+              <div><h2>일별 지수 기여도</h2><p>시총 비중 × 당일 등락률(%p)</p></div>
+            </header>
+            <div id="chartDetailContrib" class="chart" style="height:280px"></div>
+          </div>
+          <div class="card list-card">
+            <header class="card-head">
+              <div><h2>최근 그룹 전환</h2><p>상향 · 횡보 · 하향 이동 이력</p></div>
+            </header>
+            <div id="detailEvents" class="event-list"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>
+        <b>계산 방식</b>
+        <p>
+          당일 등락률 = 종가 / 전일 종가 − 1. 상대등락 = 종목 등락률 − KODEX 200 등락률.
+          z = 상대등락 ÷ 최근 <span id="footWindow">20</span>거래일 표준편차(이동).
+          |z| &lt; <span id="footThreshold">0.5</span>σ는 횡보. 지수 기여도 = 시총 비중 × 등락률(%p) 추정치이며,
+          영향력 점수는 |기여도|·거래대금·시총의 백분위를 50:30:20으로 합성한 0~100 값입니다.
+        </p>
+      </div>
+      <div class="footer-links">
+        <span class="muted">데이터: FinanceDataReader (KODEX 200 · KRX 일봉)</span>
+        <span class="muted">투자 판단의 참고용이며 매매 권유가 아닙니다.</span>
+      </div>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="loading" class="loading hidden"><div class="spinner"></div><span>계산 중…</span></div>
+
+  <script src="vendor/echarts.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

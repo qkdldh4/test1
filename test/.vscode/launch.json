@@ -1,0 +1,55 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "TSA · 로컬 서버 (데모 자동 생성)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "tsa.server",
+      "cwd": "${workspaceFolder}",
+      "args": ["--no-browser"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "TSA · 데모 데이터 생성",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "tsa.collect",
+      "cwd": "${workspaceFolder}",
+      "args": ["--demo"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "TSA · fdr 실데이터 수집",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "tsa.collect",
+      "cwd": "${workspaceFolder}",
+      "args": ["--fetch", "--workers", "1"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "TSA · 정적 페이지 빌드",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "tsa.build_static",
+      "cwd": "${workspaceFolder}",
+      "args": [],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "TSA · 테스트",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "unittest",
+      "cwd": "${workspaceFolder}",
+      "args": ["discover", "-s", "tests", "-v"],
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ]
+}

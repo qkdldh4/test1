@@ -1,0 +1,1808 @@
+{
+ "as_of": "2026-10-19",
+ "source": "KRX 상장종목 시세 스냅샷 (FinanceData/fdr_krx_data_cache, 2026-10-19)",
+ "note": "fdr.StockListing('KOSPI')로 갱신 가능한 예비 유니버스. 시가총액 단위: 원.",
+ "count": 200,
+ "stocks": [
+  {
+   "code": "005930",
+   "name": "삼성전자",
+   "close": 222000,
+   "marcap": 1274488736544000,
+   "shares": 5846278608,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000660",
+   "name": "SK하이닉스",
+   "close": 1303000,
+   "marcap": 932838750105000,
+   "shares": 730492365,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "005935",
+   "name": "삼성전자우",
+   "close": 174400,
+   "marcap": 137125238592700,
+   "shares": 802371203,
+   "market": "KOSPI",
+   "preferred": true
+  },
+  {
+   "code": "402340",
+   "name": "SK스퀘어",
+   "close": 795000,
+   "marcap": 102900718440000,
+   "shares": 131923998,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "373220",
+   "name": "LG에너지솔루션",
+   "close": 426000,
+   "marcap": 101088000000000,
+   "shares": 234000000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "009150",
+   "name": "삼성전기",
+   "close": 1214000,
+   "marcap": 87391624320000,
+   "shares": 74693696,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "005380",
+   "name": "현대차",
+   "close": 324500,
+   "marcap": 66330076392000,
+   "shares": 203466492,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "207940",
+   "name": "삼성바이오로직스",
+   "close": 1394000,
+   "marcap": 66057187077000,
+   "shares": 46290951,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "105560",
+   "name": "KB금융",
+   "close": 161900,
+   "marcap": 57707694321800,
+   "shares": 354687734,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "032830",
+   "name": "삼성생명",
+   "close": 245000,
+   "marcap": 48900000000000,
+   "shares": 200000000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "006400",
+   "name": "삼성SDI",
+   "close": 586000,
+   "marcap": 47706633760000,
+   "shares": 80585530,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "012450",
+   "name": "한화에어로스페이스",
+   "close": 898000,
+   "marcap": 46664877905000,
+   "shares": 51563401,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "028260",
+   "name": "삼성물산",
+   "close": 288000,
+   "marcap": 46217760585000,
+   "shares": 162167581,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "068270",
+   "name": "셀트리온",
+   "close": 196600,
+   "marcap": 45996844221400,
+   "shares": 232072877,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000270",
+   "name": "기아",
+   "close": 114700,
+   "marcap": 45287907768000,
+   "shares": 390412998,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "055550",
+   "name": "신한지주",
+   "close": 93000,
+   "marcap": 43799707298700,
+   "shares": 469450239,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "034020",
+   "name": "두산에너빌리티",
+   "close": 67000,
+   "marcap": 42661372323600,
+   "shares": 640561146,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "329180",
+   "name": "HD현대중공업",
+   "close": 347000,
+   "marcap": 36264103237500,
+   "shares": 104961225,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "086790",
+   "name": "하나금융지주",
+   "close": 122900,
+   "marcap": 33518977867000,
+   "shares": 270969910,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "034730",
+   "name": "SK",
+   "close": 460500,
+   "marcap": 33169986622500,
+   "shares": 72502703,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "012330",
+   "name": "현대모비스",
+   "close": 365500,
+   "marcap": 32829423817500,
+   "shares": 89820585,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "035420",
+   "name": "NAVER",
+   "close": 182700,
+   "marcap": 27820716346800,
+   "shares": 152108892,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "066570",
+   "name": "LG전자",
+   "close": 171500,
+   "marcap": 27771830779000,
+   "shares": 162884638,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "096770",
+   "name": "SK이노베이션",
+   "close": 161300,
+   "marcap": 27555604444000,
+   "shares": 169052788,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000810",
+   "name": "삼성화재",
+   "close": 603000,
+   "marcap": 27101016111000,
+   "shares": 44647473,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "005490",
+   "name": "POSCO홀딩스",
+   "close": 311500,
+   "marcap": 24921460241500,
+   "shares": 79241527,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "010120",
+   "name": "LS ELECTRIC",
+   "close": 166200,
+   "marcap": 24690000000000,
+   "shares": 150000000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "316140",
+   "name": "우리금융지주",
+   "close": 31500,
+   "marcap": 23319294529050,
+   "shares": 736786557,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "011200",
+   "name": "HMM",
+   "close": 23900,
+   "marcap": 22637711280000,
+   "shares": 943237970,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "138040",
+   "name": "메리츠금융지주",
+   "close": 130300,
+   "marcap": 21922492763000,
+   "shares": 167347273,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "010130",
+   "name": "고려아연",
+   "close": 993000,
+   "marcap": 20852096031000,
+   "shares": 20872969,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "042700",
+   "name": "한미반도체",
+   "close": 218000,
+   "marcap": 20206186400000,
+   "shares": 95312200,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "033780",
+   "name": "KT&G",
+   "close": 193100,
+   "marcap": 20045799053600,
+   "shares": 103810456,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "042660",
+   "name": "한화오션",
+   "close": 64700,
+   "marcap": 19671739894800,
+   "shares": 306413394,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "051910",
+   "name": "LG화학",
+   "close": 271000,
+   "marcap": 19448189945500,
+   "shares": 70592341,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "009540",
+   "name": "HD한국조선해양",
+   "close": 271000,
+   "marcap": 19214900994000,
+   "shares": 70773116,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "267260",
+   "name": "HD현대일렉트릭",
+   "close": 527000,
+   "marcap": 18924745875000,
+   "shares": 36047135,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "015760",
+   "name": "한국전력",
+   "close": 29100,
+   "marcap": 18681154640700,
+   "shares": 641964077,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "298040",
+   "name": "효성중공업",
+   "close": 1972000,
+   "marcap": 18052324928000,
+   "shares": 9324548,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "010950",
+   "name": "S-Oil",
+   "close": 155700,
+   "marcap": 17585432110400,
+   "shares": 112582792,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000150",
+   "name": "두산",
+   "close": 1087000,
+   "marcap": 17343597285000,
+   "shares": 16193835,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "003670",
+   "name": "포스코퓨처엠",
+   "close": 187900,
+   "marcap": 16926465666000,
+   "shares": 88946220,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "017670",
+   "name": "SK텔레콤",
+   "close": 79100,
+   "marcap": 16861019160500,
+   "shares": 214790053,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "024110",
+   "name": "기업은행",
+   "close": 20150,
+   "marcap": 16108002553800,
+   "shares": 797425869,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "010140",
+   "name": "삼성중공업",
+   "close": 18400,
+   "marcap": 16104000000000,
+   "shares": 880000000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "003550",
+   "name": "LG",
+   "close": 105100,
+   "marcap": 15890279620400,
+   "shares": 151192004,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "018260",
+   "name": "삼성에스디에스",
+   "close": 203000,
+   "marcap": 15746382300000,
+   "shares": 77377800,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "272210",
+   "name": "한화시스템",
+   "close": 81500,
+   "marcap": 15491389898000,
+   "shares": 188919389,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "006800",
+   "name": "미래에셋증권",
+   "close": 26500,
+   "marcap": 14308604693850,
+   "shares": 543021051,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "086280",
+   "name": "현대글로비스",
+   "close": 190300,
+   "marcap": 14287500000000,
+   "shares": 75000000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "035720",
+   "name": "카카오",
+   "close": 32000,
+   "marcap": 14220316371000,
+   "shares": 443000510,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "079550",
+   "name": "LIG디펜스앤에어로스페이스",
+   "close": 596000,
+   "marcap": 13134000000000,
+   "shares": 22000000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "030200",
+   "name": "KT",
+   "close": 50900,
+   "marcap": 12777499429500,
+   "shares": 252021685,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "267250",
+   "name": "HD현대",
+   "close": 160700,
+   "marcap": 12591497749000,
+   "shares": 78993085,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "278470",
+   "name": "에이피알",
+   "close": 329500,
+   "marcap": 12410748382500,
+   "shares": 37438155,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "005830",
+   "name": "DB손해보험",
+   "close": 186800,
+   "marcap": 12379565961000,
+   "shares": 65500349,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "047810",
+   "name": "한국항공우주",
+   "close": 115800,
+   "marcap": 11365597476200,
+   "shares": 97475107,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "064350",
+   "name": "현대로템",
+   "close": 100300,
+   "marcap": 10990628905100,
+   "shares": 109142293,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000720",
+   "name": "현대건설",
+   "close": 95600,
+   "marcap": 10567662098500,
+   "shares": 111355765,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "047050",
+   "name": "포스코인터내셔널",
+   "close": 57200,
+   "marcap": 10062783473600,
+   "shares": 175922788,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "011070",
+   "name": "LG이노텍",
+   "close": 427000,
+   "marcap": 9987519154000,
+   "shares": 23667107,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "003490",
+   "name": "대한항공",
+   "close": 27000,
+   "marcap": 9978778503900,
+   "shares": 368220609,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "307950",
+   "name": "현대오토에버",
+   "close": 360000,
+   "marcap": 9872633520000,
+   "shares": 27423982,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "323410",
+   "name": "카카오뱅크",
+   "close": 20600,
+   "marcap": 9828681002200,
+   "shares": 477120437,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "443060",
+   "name": "HD현대마린솔루션",
+   "close": 212000,
+   "marcap": 9549526980000,
+   "shares": 44833460,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "003230",
+   "name": "삼양식품",
+   "close": 1243000,
+   "marcap": 9416268750000,
+   "shares": 7533015,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "259960",
+   "name": "크래프톤",
+   "close": 199500,
+   "marcap": 9229153788000,
+   "shares": 45916188,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "005940",
+   "name": "NH투자증권",
+   "close": 24650,
+   "marcap": 9100930488250,
+   "shares": 369206105,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "028050",
+   "name": "삼성E&A",
+   "close": 45300,
+   "marcap": 8878800000000,
+   "shares": 196000000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "071050",
+   "name": "한국금융지주",
+   "close": 156800,
+   "marcap": 8760125942400,
+   "shares": 55725992,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "0126Z0",
+   "name": "삼성에피스홀딩스",
+   "close": 346000,
+   "marcap": 8721508674500,
+   "shares": 24883049,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "078930",
+   "name": "GS",
+   "close": 93700,
+   "marcap": 8713597431000,
+   "shares": 92895495,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "180640",
+   "name": "한진칼",
+   "close": 121900,
+   "marcap": 8144997550000,
+   "shares": 66762275,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "352820",
+   "name": "하이브",
+   "close": 186500,
+   "marcap": 8125638586000,
+   "shares": 43106836,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "090430",
+   "name": "아모레퍼시픽",
+   "close": 138000,
+   "marcap": 8101247121500,
+   "shares": 58492759,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "161390",
+   "name": "한국타이어앤테크놀로지",
+   "close": 63900,
+   "marcap": 8002329457400,
+   "shares": 123875069,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "021240",
+   "name": "코웨이",
+   "close": 108600,
+   "marcap": 7671188978400,
+   "shares": 70767426,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "009830",
+   "name": "한화솔루션",
+   "close": 33750,
+   "marcap": 7635101597200,
+   "shares": 224892536,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000500",
+   "name": "가온전선",
+   "close": 258000,
+   "marcap": 7578400981500,
+   "shares": 29777607,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "006260",
+   "name": "LS",
+   "close": 233500,
+   "marcap": 7238400000000,
+   "shares": 31200000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "007660",
+   "name": "이수페타시스",
+   "close": 100600,
+   "marcap": 7238148993400,
+   "shares": 73409219,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "016360",
+   "name": "삼성증권",
+   "close": 80500,
+   "marcap": 7170790000000,
+   "shares": 89300000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "064400",
+   "name": "LG씨엔에스",
+   "close": 69600,
+   "marcap": 6772327765200,
+   "shares": 96885948,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "032640",
+   "name": "LG유플러스",
+   "close": 15700,
+   "marcap": 6701713888280,
+   "shares": 424427732,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "353200",
+   "name": "대덕전자",
+   "close": 137400,
+   "marcap": 6611984565000,
+   "shares": 49416925,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000100",
+   "name": "유한양행",
+   "close": 86500,
+   "marcap": 6434019259400,
+   "shares": 73615781,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "047040",
+   "name": "대우건설",
+   "close": 14970,
+   "marcap": 6143069188100,
+   "shares": 410907638,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "039490",
+   "name": "키움증권",
+   "close": 228500,
+   "marcap": 5993170206000,
+   "shares": 26228316,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "326030",
+   "name": "SK바이오팜",
+   "close": 76100,
+   "marcap": 5967469650000,
+   "shares": 78313250,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "005387",
+   "name": "현대차2우B",
+   "close": 173000,
+   "marcap": 5960726178000,
+   "shares": 34257047,
+   "market": "KOSPI",
+   "preferred": true
+  },
+  {
+   "code": "062040",
+   "name": "산일전기",
+   "close": 190100,
+   "marcap": 5791498650000,
+   "shares": 30642850,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000880",
+   "name": "한화",
+   "close": 107700,
+   "marcap": 5722190648100,
+   "shares": 53328897,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "175330",
+   "name": "JB금융지주",
+   "close": 27000,
+   "marcap": 5036089248000,
+   "shares": 186521824,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "377300",
+   "name": "카카오페이",
+   "close": 36900,
+   "marcap": 4999612642300,
+   "shares": 135307514,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "128940",
+   "name": "한미약품",
+   "close": 391500,
+   "marcap": 4989880994500,
+   "shares": 12810991,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "011790",
+   "name": "SKC",
+   "close": 99500,
+   "marcap": 4974709289400,
+   "shares": 49598298,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "029780",
+   "name": "삼성카드",
+   "close": 42900,
+   "marcap": 4958760534800,
+   "shares": 115858891,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "241560",
+   "name": "두산밥캣",
+   "close": 51600,
+   "marcap": 4946172954000,
+   "shares": 95856065,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "036570",
+   "name": "NC",
+   "close": 216500,
+   "marcap": 4696596796000,
+   "shares": 21544022,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "001440",
+   "name": "대한전선",
+   "close": 24000,
+   "marcap": 4664623784800,
+   "shares": 195992596,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "088980",
+   "name": "맥쿼리인프라",
+   "close": 9710,
+   "marcap": 4645543332100,
+   "shares": 478921993,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000990",
+   "name": "DB하이텍",
+   "close": 109100,
+   "marcap": 4641939539600,
+   "shares": 43504588,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "138930",
+   "name": "BNK금융지주",
+   "close": 14590,
+   "marcap": 4482928762110,
+   "shares": 306839751,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "267270",
+   "name": "HD건설기계",
+   "close": 94400,
+   "marcap": 4469504022600,
+   "shares": 47497386,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "271560",
+   "name": "오리온",
+   "close": 110600,
+   "marcap": 4344213801200,
+   "shares": 39528788,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "088350",
+   "name": "한화생명",
+   "close": 4790,
+   "marcap": 4164601350000,
+   "shares": 868530000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "051900",
+   "name": "LG생활건강",
+   "close": 274500,
+   "marcap": 4118268825000,
+   "shares": 14975523,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "018880",
+   "name": "한온시스템",
+   "close": 3990,
+   "marcap": 4094742854580,
+   "shares": 1026251342,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "066970",
+   "name": "엘앤에프",
+   "close": 99300,
+   "marcap": 4088961492000,
+   "shares": 40686184,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "010060",
+   "name": "OCI홀딩스",
+   "close": 216500,
+   "marcap": 4070110576000,
+   "shares": 18670232,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "454910",
+   "name": "두산로보틱스",
+   "close": 62100,
+   "marcap": 4012356762000,
+   "shares": 64819980,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "052690",
+   "name": "한전기술",
+   "close": 104300,
+   "marcap": 3963414000000,
+   "shares": 38220000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "005385",
+   "name": "현대차우",
+   "close": 172500,
+   "marcap": 3951153401000,
+   "shares": 22839037,
+   "market": "KOSPI",
+   "preferred": true
+  },
+  {
+   "code": "004020",
+   "name": "현대제철",
+   "close": 29150,
+   "marcap": 3883272343500,
+   "shares": 133445785,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "001040",
+   "name": "CJ",
+   "close": 128200,
+   "marcap": 3769668141600,
+   "shares": 29176998,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "001450",
+   "name": "현대해상",
+   "close": 43850,
+   "marcap": 3746660587500,
+   "shares": 85248250,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "034220",
+   "name": "LG디스플레이",
+   "close": 7520,
+   "marcap": 3730000000000,
+   "shares": 500000000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "012750",
+   "name": "에스원",
+   "close": 97600,
+   "marcap": 3708719772800,
+   "shares": 37999178,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "002380",
+   "name": "KCC",
+   "close": 427000,
+   "marcap": 3682055936000,
+   "shares": 8592896,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "028670",
+   "name": "팬오션",
+   "close": 6780,
+   "marcap": 3629726986480,
+   "shares": 534569512,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "036460",
+   "name": "한국가스공사",
+   "close": 36750,
+   "marcap": 3397118400000,
+   "shares": 92313000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "111770",
+   "name": "영원무역",
+   "close": 75400,
+   "marcap": 3349946980800,
+   "shares": 44311468,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "192820",
+   "name": "코스맥스",
+   "close": 284500,
+   "marcap": 3228935310500,
+   "shares": 11349509,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "022100",
+   "name": "포스코DX",
+   "close": 20850,
+   "marcap": 3192729309000,
+   "shares": 152034729,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "103590",
+   "name": "일진전기",
+   "close": 66600,
+   "marcap": 3128161584000,
+   "shares": 47685390,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "082740",
+   "name": "한화엔진",
+   "close": 37650,
+   "marcap": 3125095467900,
+   "shares": 83447142,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "008930",
+   "name": "한미사이언스",
+   "close": 45500,
+   "marcap": 3115235102500,
+   "shares": 68391550,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "035250",
+   "name": "강원랜드",
+   "close": 14310,
+   "marcap": 3076464390000,
+   "shares": 213940500,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "020150",
+   "name": "롯데에너지머티리얼즈",
+   "close": 57700,
+   "marcap": 3063379585500,
+   "shares": 52365463,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "161890",
+   "name": "한국콜마",
+   "close": 129100,
+   "marcap": 3028531379100,
+   "shares": 23605077,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "031210",
+   "name": "서울보증보험",
+   "close": 42900,
+   "marcap": 2998837634100,
+   "shares": 69821598,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "011780",
+   "name": "금호석유화학",
+   "close": 116900,
+   "marcap": 2935540306600,
+   "shares": 24919697,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "302440",
+   "name": "SK바이오사이언스",
+   "close": 37000,
+   "marcap": 2902892461000,
+   "shares": 78456553,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "251270",
+   "name": "넷마블",
+   "close": 35100,
+   "marcap": 2902229032500,
+   "shares": 83158425,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "097950",
+   "name": "CJ제일제당",
+   "close": 186100,
+   "marcap": 2804594851800,
+   "shares": 15054186,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "004170",
+   "name": "신세계",
+   "close": 292500,
+   "marcap": 2772160623500,
+   "shares": 9445181,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "026960",
+   "name": "동서",
+   "close": 27650,
+   "marcap": 2771660000000,
+   "shares": 99700000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "457190",
+   "name": "이수스페셜티케미컬",
+   "close": 90700,
+   "marcap": 2771070562400,
+   "shares": 30218872,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "017800",
+   "name": "현대엘리베이터",
+   "close": 70500,
+   "marcap": 2756013142500,
+   "shares": 39092385,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "383220",
+   "name": "F&F",
+   "close": 71300,
+   "marcap": 2719802325000,
+   "shares": 38307075,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "139130",
+   "name": "iM금융지주",
+   "close": 16980,
+   "marcap": 2692177936000,
+   "shares": 158363408,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "023530",
+   "name": "롯데쇼핑",
+   "close": 93300,
+   "marcap": 2656314094500,
+   "shares": 28288755,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "018670",
+   "name": "SK가스",
+   "close": 280500,
+   "marcap": 2623196052000,
+   "shares": 9269244,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "450080",
+   "name": "에코프로머티",
+   "close": 36200,
+   "marcap": 2616572496500,
+   "shares": 70813870,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "003690",
+   "name": "코리안리",
+   "close": 14480,
+   "marcap": 2565989370120,
+   "shares": 176721031,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "014680",
+   "name": "한솔케미칼",
+   "close": 235500,
+   "marcap": 2541995478000,
+   "shares": 10794036,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "004370",
+   "name": "농심",
+   "close": 409500,
+   "marcap": 2503007183000,
+   "shares": 6082642,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000240",
+   "name": "한국앤컴퍼니",
+   "close": 26300,
+   "marcap": 2501543574000,
+   "shares": 94935240,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "006360",
+   "name": "GS건설",
+   "close": 29000,
+   "marcap": 2469025986500,
+   "shares": 85581490,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "011170",
+   "name": "롯데케미칼",
+   "close": 56500,
+   "marcap": 2433921341100,
+   "shares": 42775419,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "085620",
+   "name": "미래에셋생명",
+   "close": 17850,
+   "marcap": 2419722000000,
+   "shares": 135180000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "005850",
+   "name": "에스엘",
+   "close": 51300,
+   "marcap": 2392098780000,
+   "shares": 46448520,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "336260",
+   "name": "두산퓨얼셀",
+   "close": 36350,
+   "marcap": 2357774136000,
+   "shares": 65493726,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "282330",
+   "name": "BGF리테일",
+   "close": 135400,
+   "marcap": 2345426044200,
+   "shares": 17283906,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "007340",
+   "name": "DN오토모티브",
+   "close": 39650,
+   "marcap": 2328732427000,
+   "shares": 58510865,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "005440",
+   "name": "현대지에프홀딩스",
+   "close": 12640,
+   "marcap": 2323642511330,
+   "shares": 183397199,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "375500",
+   "name": "DL이앤씨",
+   "close": 60800,
+   "marcap": 2317748017700,
+   "shares": 38693623,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "112610",
+   "name": "씨에스윈드",
+   "close": 54000,
+   "marcap": 2306775744100,
+   "shares": 42171403,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "030000",
+   "name": "제일기획",
+   "close": 19810,
+   "marcap": 2289320377500,
+   "shares": 115041225,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "004990",
+   "name": "롯데지주",
+   "close": 22800,
+   "marcap": 2272334092800,
+   "shares": 99663776,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "009420",
+   "name": "한올바이오파마",
+   "close": 43000,
+   "marcap": 2262019625400,
+   "shares": 52240638,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "009970",
+   "name": "영원무역홀딩스",
+   "close": 174000,
+   "marcap": 2255259539700,
+   "shares": 12953817,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "001720",
+   "name": "신영증권",
+   "close": 128900,
+   "marcap": 2127336000000,
+   "shares": 16440000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "279570",
+   "name": "케이뱅크",
+   "close": 5240,
+   "marcap": 2125842591240,
+   "shares": 405695151,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "483650",
+   "name": "달바글로벌",
+   "close": 170000,
+   "marcap": 2124607184000,
+   "shares": 12527165,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "139480",
+   "name": "이마트",
+   "close": 75300,
+   "marcap": 2091763080200,
+   "shares": 27595819,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "489790",
+   "name": "한화비전",
+   "close": 41400,
+   "marcap": 2077597248500,
+   "shares": 50488390,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "004800",
+   "name": "효성",
+   "close": 123900,
+   "marcap": 2074136427300,
+   "shares": 16740407,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "081660",
+   "name": "미스토홀딩스",
+   "close": 37750,
+   "marcap": 2014835328000,
+   "shares": 53091840,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "204320",
+   "name": "HL만도",
+   "close": 42450,
+   "marcap": 2000373312000,
+   "shares": 46957120,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "281820",
+   "name": "케이씨텍",
+   "close": 101900,
+   "marcap": 1987785564400,
+   "shares": 19798661,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "002790",
+   "name": "아모레퍼시픽홀딩스",
+   "close": 25950,
+   "marcap": 1976443953000,
+   "shares": 76458180,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "051600",
+   "name": "한전KPS",
+   "close": 42600,
+   "marcap": 1917000000000,
+   "shares": 45000000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "089860",
+   "name": "롯데렌탈",
+   "close": 50800,
+   "marcap": 1866302543200,
+   "shares": 36309388,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "462870",
+   "name": "시프트업",
+   "close": 31400,
+   "marcap": 1844495346000,
+   "shares": 58741890,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "069960",
+   "name": "현대백화점",
+   "close": 85000,
+   "marcap": 1839486993600,
+   "shares": 21564912,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "103140",
+   "name": "풍산",
+   "close": 64500,
+   "marcap": 1813170786600,
+   "shares": 28024278,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "229640",
+   "name": "LS에코에너지",
+   "close": 58700,
+   "marcap": 1773180494100,
+   "shares": 30624879,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "007070",
+   "name": "GS리테일",
+   "close": 21250,
+   "marcap": 1772477198000,
+   "shares": 83607415,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "001120",
+   "name": "LX인터내셔널",
+   "close": 44750,
+   "marcap": 1736448000000,
+   "shares": 38760000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "073240",
+   "name": "금호타이어",
+   "close": 5980,
+   "marcap": 1706326104780,
+   "shares": 287260287,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "181710",
+   "name": "NHN",
+   "close": 52100,
+   "marcap": 1671407490500,
+   "shares": 32328965,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000120",
+   "name": "CJ대한통운",
+   "close": 71300,
+   "marcap": 1637926299200,
+   "shares": 22812344,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "439260",
+   "name": "대한조선",
+   "close": 42200,
+   "marcap": 1611153279000,
+   "shares": 38088730,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "395400",
+   "name": "SK리츠",
+   "close": 5310,
+   "marcap": 1598403562200,
+   "shares": 301017620,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "006040",
+   "name": "동원산업",
+   "close": 35800,
+   "marcap": 1575827238300,
+   "shares": 44140819,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "007810",
+   "name": "코리아써키트",
+   "close": 66200,
+   "marcap": 1546878990000,
+   "shares": 23982620,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "023590",
+   "name": "다우기술",
+   "close": 35300,
+   "marcap": 1541028307200,
+   "shares": 43287312,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "361610",
+   "name": "SK아이이테크놀로지",
+   "close": 18660,
+   "marcap": 1535143867000,
+   "shares": 81787100,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "006280",
+   "name": "녹십자",
+   "close": 129600,
+   "marcap": 1527430516600,
+   "shares": 11686538,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "008770",
+   "name": "호텔신라",
+   "close": 38400,
+   "marcap": 1505165440350,
+   "shares": 39248121,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "005070",
+   "name": "코스모신소재",
+   "close": 44400,
+   "marcap": 1492994966450,
+   "shares": 33214571,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "020560",
+   "name": "아시아나항공",
+   "close": 7260,
+   "marcap": 1491372747640,
+   "shares": 205990711,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "120110",
+   "name": "코오롱인더",
+   "close": 49200,
+   "marcap": 1470350171200,
+   "shares": 29946032,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "475150",
+   "name": "SK이터닉스",
+   "close": 42800,
+   "marcap": 1458067771200,
+   "shares": 34067004,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "000155",
+   "name": "두산우",
+   "close": 360500,
+   "marcap": 1444721013000,
+   "shares": 3996462,
+   "market": "KOSPI",
+   "preferred": true
+  },
+  {
+   "code": "071970",
+   "name": "HD현대마린엔진",
+   "close": 41800,
+   "marcap": 1423006715250,
+   "shares": 33921495,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "011210",
+   "name": "현대위아",
+   "close": 51900,
+   "marcap": 1416863824300,
+   "shares": 27195083,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "322000",
+   "name": "HD현대에너지솔루션",
+   "close": 124900,
+   "marcap": 1416800000000,
+   "shares": 11200000,
+   "market": "KOSPI",
+   "preferred": false
+  },
+  {
+   "code": "294870",
+   "name": "IPARK현대산업개발",
+   "close": 21100,
+   "marcap": 1384053930000,
+   "shares": 65907330,
+   "market": "KOSPI",
+   "preferred": false
+  }
+ ]
+}
